@@ -1,6 +1,8 @@
 package com.bookstore.service.impl;
 
 import com.bookstore.domain.User;
+import com.bookstore.domain.UserBilling;
+import com.bookstore.domain.UserPayment;
 import com.bookstore.domain.security.PasswordResetToken;
 import com.bookstore.domain.security.UserRole;
 import com.bookstore.repository.PasswordResetTokenRepository;
@@ -72,5 +74,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+        userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
+        userPayment.setDefaultPayment(true);
+        userBilling.setUserPayment(userPayment);
+        user.getUserPaymentList().add(userPayment);
+        save(user);
     }
 }
