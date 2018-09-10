@@ -19,7 +19,7 @@ public class ShoppingCart {
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     public ShoppingCart() {
