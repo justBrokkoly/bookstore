@@ -104,4 +104,6 @@ public class UserShipping {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }
