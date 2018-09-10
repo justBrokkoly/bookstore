@@ -11,10 +11,7 @@ import com.bookstore.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -49,7 +46,7 @@ public class ShoppingCartController {
         return "shoppingCart";
     }
 
-    @GetMapping("/addItem")
+    @PostMapping("/addItem")
     public String addItem(@ModelAttribute("book") Book book,
                           @ModelAttribute("qty") String qty,
                           Model model,Principal principal){
@@ -67,7 +64,7 @@ public class ShoppingCartController {
         return "forward:/bookDetail?id="+book.getId();
     }
 
-    @GetMapping("/updateCartItem")
+    @PostMapping("/updateCartItem")
     public String updateShoppingCart(@ModelAttribute("id") Long cartItemId,
                                      @ModelAttribute("qty") int qty){
         CartItem cartItem = cartItemService.findById(cartItemId);
